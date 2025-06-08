@@ -1,0 +1,12 @@
+Options -Indexes
+RewriteEngine On
+
+# Accept loading of actual files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Exclude the includes directory from being rewritten
+RewriteCond %{REQUEST_URI} !^/includes/
+
+# Send everything else to the index page
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
